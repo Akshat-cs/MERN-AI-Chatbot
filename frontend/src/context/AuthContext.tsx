@@ -61,7 +61,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await logoutUser();
     setIsLoggedIn(false);
     setUser(null);
-    window.location.reload();
   };
 
   const value = {
