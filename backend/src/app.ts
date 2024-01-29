@@ -11,7 +11,11 @@ const app = express();
 
 // middlewares
 app.use(
-  cors({ origin: "https://mern-ai-chatbot.onrender.com", credentials: true })
+  cors({
+    origin: "https://mern-ai-chatbot.onrender.com",
+    credentials: true,
+    exposedHeaders: ["Set-Cookie"],
+  })
 );
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
