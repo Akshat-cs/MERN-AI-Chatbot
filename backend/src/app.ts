@@ -4,8 +4,13 @@ import morgan from "morgan";
 import appRouter from "./routes/index.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 config();
+
+// Obtain the current filename and directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
@@ -19,6 +24,14 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
+
+// Serve static files from the frontend build directory
+app.use(express.static(join(__dirname, "..", "frontend", "dist")));
+
+// Handle all other routes by serving the main HTML file
+app.get("*", (req, res) => {
+  res.sendFile(join(__dirname, "..", "frontend", "dist", "index.html"));
+});
 
 // remove it in production
 app.use(morgan("dev"));
