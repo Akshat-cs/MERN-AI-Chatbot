@@ -41,6 +41,8 @@ export const userSignup = async (
       domain: "https://mern-ai-chatbot.onrender.com/",
       httpOnly: true,
       signed: true,
+      secure: true,
+      sameSite: "none",
     });
 
     const token = createToken(user._id.toString(), user.email, "7d");
@@ -52,6 +54,8 @@ export const userSignup = async (
       expires,
       httpOnly: true,
       signed: true,
+      secure: true,
+      sameSite: "none",
     });
 
     return res
@@ -96,6 +100,8 @@ export const userLogin = async (
       expires,
       httpOnly: true,
       signed: true,
+      secure: true,
+      sameSite: "none",
     });
 
     return res
@@ -150,6 +156,8 @@ export const userLogout = async (
       domain: "https://mern-ai-chatbot.onrender.com/",
       httpOnly: true,
       signed: true,
+      secure: true,
+      sameSite: "none",
     });
 
     return res
